@@ -47,13 +47,10 @@ io.on('connection', (socket) => {
     const wheel = wheels[wheelId];
     if (!wheel) return;
     const numOptions = wheel.options.length;
-    // Randomly select result index
-    const result = Math.floor(Math.random() * numOptions);
-    // Random offset within the slice (in degrees)
-    const anglePer = 360 / numOptions;
-    const offset = (Math.random() - 0.5) * anglePer;
-    // Broadcast both result and offset to all clients in the room
-    io.to(wheelId).emit('spin-result', { result, offset });
+    // Randomly select a landing angle anywhere on the wheel
+    const landingAngle = Math.random() * 360;
+    // Broadcast the landing angle to all clients in the room
+    io.to(wheelId).emit('spin-result', { landingAngle });
   });
 });
 
