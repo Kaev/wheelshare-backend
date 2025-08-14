@@ -1,3 +1,6 @@
+# DISCLAIMER
+This entire backend is fully vibecoded. I didn't write a single line of code in this project. Don't take this project serious, i just wanted to see how well GitHub Copilot works for such a task.
+
 # Wheelshare Backend
 
 This is the backend for the Wheelshare app. It provides REST endpoints to create and fetch wheels, and uses Socket.IO for real-time spin synchronization between users.
