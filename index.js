@@ -46,7 +46,6 @@ io.on('connection', (socket) => {
     // Get wheel options
     const wheel = wheels[wheelId];
     if (!wheel) return;
-    const numOptions = wheel.options.length;
     // Randomly select a landing angle anywhere on the wheel
     const landingAngle = Math.random() * 360;
     // Broadcast the landing angle to all clients in the room
