@@ -47,16 +47,14 @@ io.on('connection', (socket) => {
     const wheel = wheels[wheelId];
     if (!wheel) return;
     const numOptions = wheel.options.length;
-    // Randomly select a landing angle anywhere on the wheel
-    const landingAngle = Math.random() * 360;
-    // Calculate which slice the pointer lands on
-    const anglePer = 360 / numOptions;
-    let normalized = ((landingAngle % 360) + 360) % 360;
-    // The pointer is at 9 o'clock (-90deg), so shift -90
-    let pointerAngle = (normalized - 90 + 360) % 360;
-    let resultIdx = Math.floor(pointerAngle / anglePer);
-    // Broadcast both landingAngle and resultIdx to all clients in the room
-    io.to(wheelId).emit('spin-result', { landingAngle, resultIdx });
+  // Randomly select a landing angle anywhere on the wheel
+  const landingAngle = Math.random() * 360;
+  // Calculate which slice the pointer lands on (pointer at top, -90deg)
+  const anglePer = 360 / numOptions;
+let pointerAngle = landingAngle % 360;
+let resultIdx = Math.floor(pointerAngle / anglePer);
+  // Broadcast both landingAngle and resultIdx to all clients in the room
+  io.to(wheelId).emit('spin-result', { landingAngle, resultIdx });
   });
 });
 
